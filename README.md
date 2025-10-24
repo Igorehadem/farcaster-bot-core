@@ -19,3 +19,7 @@ Core logic and utilities for building bots on Farcaster.
 3) Build: `npm run build`
 4) Run (dry-run): `node dist/index.js`
 
+### Related Projects
+- [BaseToken Contract](https://github.com/Igorehadem/base-token-contract)
+- [Farcaster Bot Core](https://github.com/Igorehadem/farcaster-bot-core)
+- [Builder Journal](https://github.com/Igorehadem/builder-journal)

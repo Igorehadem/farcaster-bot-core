@@ -1,0 +1,16 @@
+{
+  "name": "farcaster-bot-core",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc -p .",
+    "dev": "ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "ts-node": "^10.9.2"
+  }
+}

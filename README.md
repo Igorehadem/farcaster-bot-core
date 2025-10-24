@@ -13,4 +13,9 @@ Core logic and utilities for building bots on Farcaster.
 - [ ] Base integration planned
 - [ ] Message handler module
 
-_Last updated: 2025-10-25_
+## Quick Start (dev)
+1) Copy `.env.example` to `.env` and fill keys later.
+2) Install deps: `npm i`
+3) Build: `npm run build`
+4) Run (dry-run): `node dist/index.js`
+

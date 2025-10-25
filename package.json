@@ -10,8 +10,8 @@
     "dev": "ts-node src/index.ts"
   },
   "devDependencies": {
-    "typescript": "^5.5.0",
-    "ts-node": "^10.9.2",
-    "neynar": "^0.3.0",
+  "typescript": "^5.5.0",
+  "ts-node": "^10.9.2",
+  "@types/node": "^20.11.30"
   }
 }

@@ -10,3 +10,4 @@ export async function postCast(message: string) {
     timestamp: new Date().toISOString(),
   };
 }
+// SDK integration coming soon

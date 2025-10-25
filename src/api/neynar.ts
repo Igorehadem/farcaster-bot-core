@@ -1,6 +1,12 @@
-// Placeholder Neynar API client (to be implemented)
+// Placeholder Neynar API client
+import { config } from "../../config.js";
+
 export async function postCast(message: string) {
-  // TODO: wire with Neynar SDK / REST
-  console.log(`[dry-run] postCast -> ${message}`);
-  return { ok: true };
+  console.log(`🚀 [dry-run] Posting cast via Neynar: "${message}"`);
+  // TODO: Replace with real API call once SDK key is ready
+  return {
+    success: true,
+    message,
+    timestamp: new Date().toISOString(),
+  };
 }

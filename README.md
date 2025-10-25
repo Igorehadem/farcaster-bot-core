@@ -8,10 +8,12 @@ Core logic and utilities for building bots on Farcaster.
 - Onchain integrations (Base planned)
 
 ## Roadmap
-- [x] Project initialized
-- [x] Neynar API placeholder added
-- [ ] Base integration planned
-- [ ] Message handler module
+- [x] Add config module  
+- [x] Add scheduler  
+- [x] Add Neynar API placeholder  
+- [ ] Implement real Neynar SDK  
+- [ ] Add onchain Base events bridge
+
 
 ## Quick Start (dev)
 1) Copy `.env.example` to `.env` and fill keys later.

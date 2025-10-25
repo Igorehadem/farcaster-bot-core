@@ -12,6 +12,6 @@
   "devDependencies": {
   "typescript": "^5.5.0",
   "ts-node": "^10.9.2",
-  "neynar": "github:neynarxyz/js-sdk"
+  "neynar": "https://github.com/neynarxyz/js-sdk.git"
   }
 }

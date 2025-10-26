@@ -1,4 +1,4 @@
-![CI](https://github.com/<user>/<repo>/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/Igorehadem/farcaster-bot-core/actions/workflows/ci.yml/badge.svg)
 
 # Farcaster Bot Core 🤖
 

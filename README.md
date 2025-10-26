@@ -1,3 +1,5 @@
+![CI](https://github.com/<user>/<repo>/actions/workflows/ci.yml/badge.svg)
+
 # Farcaster Bot Core 🤖
 
 Core logic and utilities for building bots on Farcaster.

@@ -18,7 +18,7 @@ Core logic and utilities for building bots on Farcaster.
 - [x] Add scheduler  
 - [x] Add Neynar API placeholder  
 - [x] Fix CI pipeline (Node 20 + TypeScript + @types/node)  
-- [ ] Implement real Neynar SDK  
+- [x] Implement Neynar postCast() stub (SDK ready) 
 - [ ] Add onchain Base events bridge  
 
 ### Phase 2 — Automation & Scaling

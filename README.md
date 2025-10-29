@@ -56,3 +56,13 @@ Tests compile successfully with TypeScript 5.5 and `@types/node`.
 - Event-based listener for mentions and onchain actions  
 - Optional BaseToken tip trigger via smart-contract call  
 - Logging pipeline → Builder Journal updates  
+
+## Demo
+
+Latest bot log sample (auto-generated):
+[2025-10-29T09:00:00.000Z] gm Farcaster 🌐 #AutomationTest
+[2025-10-29T10:00:00.000Z] gm Farcaster 🌐 #AutomationTest
+
+
+*(Replace with any actual lines from your `cast-log.txt` if present.)*
+

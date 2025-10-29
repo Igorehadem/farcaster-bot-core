@@ -25,8 +25,17 @@ jobs:
         run: ls -R dist || echo "⚠️ No build output found"
 
       - name: Run Farcaster Bot (dry-run)
-        # Путь поправлен: index.js находится в dist/src/
-        run: node dist/src/index.js
+        id: runbot
+        run: |
+          set +e
+          npx ts-node src/index.ts
+          echo "exit_code=$?" >> $GITHUB_OUTPUT
+          set -e
 
-      - name: ✅ Confirm success
-        run: echo "✅ Farcaster Bot dry-run complete!"
+      - name: Report result
+        if: steps.runbot.outputs.exit_code == '0'
+        run: echo "✅ Bot ran successfully"
+
+      - name: Report failure
+        if: steps.runbot.outputs.exit_code != '0'
+        run: echo "❌ Bot failed during dry-run"

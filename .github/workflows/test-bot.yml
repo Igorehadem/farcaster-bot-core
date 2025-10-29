@@ -20,8 +20,11 @@ jobs:
       - name: Build TypeScript
         run: npx tsc -p .
 
-      - name: Run Farcaster Bot (dry-run)
-        run: node dist/index.js
+      - name: Build and run Farcaster Bot (dry-run)
+        run: |
+          npx tsc -p .
+          node dist/index.js
+
 
       - name: ✅ Confirm success
         run: echo "✅ Farcaster Bot dry-run complete!"

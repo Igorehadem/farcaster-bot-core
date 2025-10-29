@@ -1,6 +1,4 @@
-// Simple interval scheduler utility
-export function every(ms: number, fn: () => void) {
-  const id = setInterval(fn, ms);
+export function every(ms: number, fn: (stop: () => void) => void) {
+  const timer = setInterval(() => fn(() => clearInterval(timer)), ms);
   console.log(`⏱ Scheduler started (${ms / 1000}s interval)`);
-  return () => clearInterval(id);
 }

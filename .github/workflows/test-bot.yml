@@ -1,6 +1,7 @@
 name: test-bot
 on:
-  workflow_dispatch:   # Позволяет вручную запустить из вкладки Actions
+  workflow_dispatch:   # Ручной запуск из вкладки Actions
+
 jobs:
   dryrun:
     runs-on: ubuntu-latest
@@ -17,14 +18,15 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build TypeScript
+      - name: Compile TypeScript
         run: npx tsc -p .
 
-      - name: Build and run Farcaster Bot (dry-run)
-        run: |
-          npx tsc -p .
-          node dist/index.js
+      - name: List build output
+        run: ls -R dist || echo "⚠️ No build output found"
 
+      - name: Run Farcaster Bot (dry-run)
+        # Путь поправлен: index.js находится в dist/src/
+        run: node dist/src/index.js
 
       - name: ✅ Confirm success
         run: echo "✅ Farcaster Bot dry-run complete!"

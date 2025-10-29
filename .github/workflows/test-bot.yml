@@ -28,7 +28,7 @@ jobs:
         id: runbot
         run: |
           set +e
-          npx ts-node src/index.ts
+          npx ts-node --esm src/index.ts
           echo "exit_code=$?" >> $GITHUB_OUTPUT
           set -e
 

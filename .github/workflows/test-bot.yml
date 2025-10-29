@@ -39,3 +39,12 @@ jobs:
       - name: Report failure
         if: steps.runbot.outputs.exit_code != '0'
         run: echo "❌ Bot failed during dry-run"
+
+      - name: 📦 Upload cast log artifact
+        if: always()        # Загружает даже если тест упал
+        uses: actions/upload-artifact@v4
+        with:
+          name: cast-log
+          path: cast-log.txt
+          if-no-files-found: warn
+

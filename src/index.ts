@@ -2,6 +2,7 @@ import { postCast } from "./api/neynar.js";
 import { every } from "./utils/scheduler.js";
 import { printConfig, config } from "../config.js";
 import { MessageQueue } from "./utils/queue.js";
+import { appendLog } from "./utils/logger.js";
 
 printConfig();
 console.log("🤖 Farcaster Bot Core initialized (Phase 2).");
@@ -20,9 +21,12 @@ every(config.postInterval * 60_000, async (stop) => {
   const result = await postCast(msg);
   console.log("cast result:", result);
 
+  appendLog(`Cast: ${msg} → ${result.hash}`);
+
   runs++;
   if (runs >= maxRuns) {
+    appendLog(`🛑 Reached ${maxRuns} iterations, stopping scheduler.`);
     console.log(`🛑 Reached ${maxRuns} iterations, stopping scheduler.`);
-    stop(); // останавливаем таймер
+    stop();
   }
 });

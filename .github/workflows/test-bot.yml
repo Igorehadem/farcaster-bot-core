@@ -1,0 +1,27 @@
+name: test-bot
+on:
+  workflow_dispatch:   # Позволяет вручную запустить из вкладки Actions
+jobs:
+  dryrun:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build TypeScript
+        run: npx tsc -p .
+
+      - name: Run Farcaster Bot (dry-run)
+        run: node dist/index.js
+
+      - name: ✅ Confirm success
+        run: echo "✅ Farcaster Bot dry-run complete!"

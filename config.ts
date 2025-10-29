@@ -1,5 +1,9 @@
 // Farcaster Bot Core – configuration module
-import 'dotenv/config';
+try {
+  await import('dotenv/config');
+} catch {
+  console.log('⚠️ dotenv not found — skipping env load (CI-safe)');
+}
 
 export const config = {
   neynarApiKey: process.env.FARCASTER_API_KEY || "",

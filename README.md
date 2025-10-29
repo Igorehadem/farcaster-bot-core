@@ -63,6 +63,31 @@ Latest bot log sample (auto-generated):
 [2025-10-29T09:00:00.000Z] gm Farcaster 🌐 #AutomationTest
 [2025-10-29T10:00:00.000Z] gm Farcaster 🌐 #AutomationTest
 
+---
 
-*(Replace with any actual lines from your `cast-log.txt` if present.)*
+## 🧪 Test Bot Demo
+
+You can run a safe **dry-run** of the Farcaster Bot directly on GitHub Actions.  
+It automatically simulates message posting, logs results to `cast-log.txt`,  
+and stops after 10 iterations.
+
+[![Run Farcaster Bot (dry-run)](https://github.com/Igorehadem/farcaster-bot-core/actions/workflows/test-bot.yml/badge.svg)](https://github.com/Igorehadem/farcaster-bot-core/actions/workflows/test-bot.yml)
+
+### Sample Output
+
+🤖 Farcaster Bot Core initialized (Phase 2).
+⏱ Scheduler started (6s interval)
+(stub) Would post cast: gm Farcaster 🌐 (queued)
+(stub) Would post cast: Phase 2: queue + webhook placeholders ready
+🛑 Reached 10 iterations, stopping scheduler.
+✅ Bot ran successfully
+
+
+➡️ Logs from the latest run are available in the **Artifacts** section  
+(`cast-log.zip`) at the bottom of each workflow page.
+
+---
+
+
+
 

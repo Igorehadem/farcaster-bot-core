@@ -1,0 +1,29 @@
+name: One-time Farcaster autopost batch (3 posts, 1h interval)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-batch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 200 # enough for 2h interval + buffer
+    env:
+      NEYNAR_API_KEY: ${{ secrets.NEYNAR_API_KEY }}
+      SIGNER_PRIVATE_KEY: ${{ secrets.SIGNER_PRIVATE_KEY }}
+      POST_IMAGE_URL_1: ${{ secrets.POST_IMAGE_URL_1 }}
+      POST_IMAGE_URL_2: ${{ secrets.POST_IMAGE_URL_2 }}
+      POST_IMAGE_URL_3: ${{ secrets.POST_IMAGE_URL_3 }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts || npm i --ignore-scripts
+
+      - name: Run one-time autopost batch
+        run: node scripts/runBatchPoster.js

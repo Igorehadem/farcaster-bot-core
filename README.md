@@ -88,6 +88,83 @@ and stops after 10 iterations.
 
 ---
 
+## 🔐 Environment Variables
 
+Create a local `.env` file (never commit it) based on `.env.example`:
+
+NEYNAR_API_KEY=your_neynar_api_key
+SIGNER_PRIVATE_KEY=your_signer_private_key
+POST_IMAGE_URL_1=https://yourimage1.url
+POST_IMAGE_URL_2=https://yourimage2.url
+POST_IMAGE_URL_3=https://yourimage3.url
+
+sql
+Копировать код
+
+These variables are required for local runs and GitHub Actions.  
+Use `.env.example` as a reference.  
+Add your real values only in a local `.env` file or GitHub Secrets.
+
+---
+
+## 🚀 One-Time 3-Post Batch (1-Hour Interval)
+
+### ▶️ Run Locally
+
+node scripts/runBatchPoster.js
+
+markdown
+Копировать код
+
+This will:
+- Immediately post the first message.  
+- Schedule two more posts, each one hour apart.
+
+### ⚙️ Run via GitHub Actions
+
+1. Go to **Settings → Secrets and variables → Actions**  
+   Add the following secrets:
+   - `NEYNAR_API_KEY`
+   - `SIGNER_PRIVATE_KEY`
+   - *(optional)* `POST_IMAGE_URL_1`, `POST_IMAGE_URL_2`, `POST_IMAGE_URL_3`
+2. Open **Actions → One-time Farcaster autopost batch → Run workflow**  
+   to trigger the job manually.
+
+Default demo images use [picsum.photos](https://picsum.photos).  
+You can override them by setting your own image URLs or editing  
+`src/scheduler/autoPosts.js`.
+
+---
+
+## 🧩 Neynar Client Integration
+
+The file `src/utils/neynarClient.js` provides the helper function:
+
+```js
+postCast({ text, imageUrl })
+It currently logs mock output for testing.
+Replace its body with the actual Neynar SDK or API call using your delegated signer
+when you’re ready for real posting.
+
+This approach keeps your main wallet seed completely safe.
+
+⚠️ Security Guidelines
+Never commit .env or any real private keys.
+
+Always use a delegated signer, approved in Warpcast.
+
+You can revoke a signer at any time if compromised.
+
+Your main wallet and seed phrase remain untouched.
+
+CI/CD automation must rely only on environment variables and GitHub Secrets.
+
+🧠 Quick Recap
+Component	Purpose
+.env.example	Reference for required environment variables
+src/utils/neynarClient.js	Wrapper for Neynar API (replace mock)
+src/scheduler/autoPosts.js	Logic for 3 scheduled posts (1 hour apart)
+scripts/runBatchPoster.js	CLI runner for manual execution
+.github/workflows/auto-post-batch.yml
 
 

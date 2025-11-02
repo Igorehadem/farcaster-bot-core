@@ -1,52 +1,49 @@
 // src/utils/neynarClient.js
-// Minimal wrapper for posting to Farcaster via Neynar API (mock implementation).
-// Replace the mock section with the real Neynar SDK call when ready.
+// Real Neynar API call for posting a cast via delegated signer UUID.
+// Docs: POST /v2/farcaster/cast/ (requires x-api-key + signer_uuid)
 
-/**
- * Posts a cast (text + optional image) to Farcaster using Neynar API.
- * @param {Object} params
- * @param {string} params.text - The text content of the cast.
- * @param {string} [params.imageUrl] - Optional image URL to embed in the cast.
- * @returns {Promise<Object>} - API response or mock object.
- */
+const API_URL = "https://api.neynar.com/v2/farcaster/cast/";
+
 async function postCast({ text, imageUrl }) {
   const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY;
-  const SIGNER_PRIVATE_KEY = process.env.SIGNER_PRIVATE_KEY;
+  const SIGNER_UUID = process.env.SIGNER_UUID;
 
-  if (!NEYNAR_API_KEY || !SIGNER_PRIVATE_KEY) {
-    throw new Error("Missing required environment variables: NEYNAR_API_KEY or SIGNER_PRIVATE_KEY");
+  if (!NEYNAR_API_KEY || !SIGNER_UUID) {
+    throw new Error(
+      "Missing env vars: NEYNAR_API_KEY and/or SIGNER_UUID. " +
+      "See .env.example and ensure your signer is approved in Warpcast."
+    );
   }
 
-  // === MOCK IMPLEMENTATION ===
-  // For now, this only logs the payload to demonstrate the posting flow.
-  // Later, replace this block with a real API or SDK request to Neynar.
-  console.log("[neynarClient] Mock postCast() called with:", { text, imageUrl });
-  return {
-    ok: true,
-    mock: true,
-    postedAt: new Date().toISOString(),
-    text,
-    imageUrl,
-  };
+  // Embeds: pass image URL if provided (Farcaster supports URL embeds).
+  // Neynar accepts an 'embeds' array; image links may be included as { url }.
+  // If you need cast/thread embeds, use { cast_id: { hash, fid } } instead.
+  const embeds = imageUrl ? [{ url: imageUrl }] : [];
 
-  // === REAL IMPLEMENTATION EXAMPLE (replace above block) ===
-  // const res = await fetch("https://api.neynar.com/v2/farcaster/cast", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "api_key": NEYNAR_API_KEY,
-  //   },
-  //   body: JSON.stringify({
-  //     signer_key: SIGNER_PRIVATE_KEY,
-  //     text,
-  //     embeds: imageUrl ? [{ url: imageUrl }] : [],
-  //   }),
-  // });
-  // if (!res.ok) {
-  //   const err = await res.text();
-  //   throw new Error(`Neynar API error: ${res.status} ${err}`);
-  // }
-  // return res.json();
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": NEYNAR_API_KEY,
+    },
+    body: JSON.stringify({
+      signer_uuid: SIGNER_UUID,
+      text,
+      embeds,
+      // Optional fields you might use later:
+      // channel_id: "neynar",
+      // parent: "<cast hash or parent_url>",
+      // idem: "<your idempotency key>",
+    }),
+  });
+
+  if (!res.ok) {
+    const errTxt = await res.text().catch(() => "");
+    throw new Error(`Neynar publish error ${res.status}: ${errTxt}`);
+  }
+
+  // Expected: { success: true, cast: { hash, author: { fid }, text } }
+  return res.json();
 }
 
 module.exports = { postCast };

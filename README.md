@@ -48,6 +48,7 @@ Tests compile successfully with TypeScript 5.5 and `@types/node`.
 - [BaseToken Contract](https://github.com/Igorehadem/base-token-contract)  
 - [Farcaster Bot Core](https://github.com/Igorehadem/farcaster-bot-core)  
 - [Builder Journal](https://github.com/Igorehadem/builder-journal)
+- [Base Screener] (https://github.com/Igorehadem/base-wallet-screener) 
 
 ---
 

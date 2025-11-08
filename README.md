@@ -165,3 +165,32 @@ config.ts
 ## License
 
 MIT © 2025 Igorehadem
+
+---
+
+## 🧱 Development Summary
+
+> Repository activity and maintenance checklist for Farcaster Bot Core
+
+| # | Commit Type | Description | Status |
+|---|--------------|-------------|:------:|
+| 1 | `docs:` | ✏️ Rebuilt and cleaned up README with badges & env docs | ✅ |
+| 2 | `docs:` | 🧠 Added detailed comments to all GitHub workflows | ✅ |
+| 3 | `docs:` | 🔧 Updated `.env.example` and `config.ts` (safe signer) | ✅ |
+| 4 | `feat:` | 🧾 Added reusable `logger.ts` utility | ✅ |
+| 5 | `refactor:` | ♻️ Integrated logger into `index.ts` | ✅ |
+| 6 | `refactor:` | 🚀 Updated scripts (`postTestCast.js`, `runBatchPoster.js`) | ✅ |
+| 7 | `feat:` | 🗓 Enhanced auto-post scheduler with structured logging | ✅ |
+| 8 | `feat:` | 🪝 Implemented typed webhook handler and event types | ✅ |
+| 9 | `chore:` | 🎨 Added Prettier and EditorConfig for code style | ✅ |
+| 10 | `docs:` | 🧱 Added this summary checklist to README | ✅ |
+
+---
+
+### 🧩 Highlights
+- Modular design: `config`, `logger`, `scheduler`, `webhooks`
+- CI-ready with mock Neynar integration
+- Consistent code style and logging system
+- Ready for **Phase 2: onchain → cast bridge**
+
+_Last updated: **${new Date().toISOString().slice(0,10)}**_

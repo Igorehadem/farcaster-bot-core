@@ -1,14 +1,30 @@
+# ----------------------------------------------------------
+# 🧠 Farcaster Bot Core — Continuous Integration (CI)
+# Runs TypeScript compile test on every push / PR
+# ----------------------------------------------------------
+
 name: ci
+
 on:
   push:
   pull_request:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Checkout code
       - uses: actions/checkout@v4
+
+      # 2️⃣ Setup Node environment
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install --legacy-peer-deps
-      - run: npx tsc -p .
+
+      # 3️⃣ Install dependencies
+      - name: Install deps
+        run: npm install --legacy-peer-deps
+
+      # 4️⃣ Compile TypeScript
+      - name: Compile TypeScript
+        run: npx tsc -p .

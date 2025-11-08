@@ -1,6 +1,13 @@
+# ----------------------------------------------------------
+# 🤖 Farcaster Bot Core — Test Bot Workflow
+# Manual trigger from Actions tab
+# Runs a dry-run Farcaster bot session (10 iterations)
+# ----------------------------------------------------------
+
+
 name: test-bot
 on:
-  workflow_dispatch:   # Ручной запуск из вкладки Actions
+  workflow_dispatch:  
 
 jobs:
   dryrun:
@@ -41,7 +48,7 @@ jobs:
         run: echo "❌ Bot failed during dry-run"
 
       - name: 📦 Upload cast log artifact
-        if: always()        # Загружает даже если тест упал
+        if: always()        
         uses: actions/upload-artifact@v4
         with:
           name: cast-log

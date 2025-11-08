@@ -1,23 +1,29 @@
-// scripts/postTestCast.js
-// Post a single test cast immediately (text + optional image) using real Neynar API.
+// ----------------------------------------------------------
+// 🧪 Farcaster Bot Core — Single Test Cast Script
+// Posts one test cast (mock) using Neynar API wrapper
+// ----------------------------------------------------------
 
-require("dotenv").config();
-const { postCast } = require("../src/utils/neynarClient");
+import "dotenv/config";
+import { postCast } from "../src/utils/neynarClient.js";
+import { appendLog, divider } from "../src/utils/logger.js";
+import { config } from "../config.js";
 
 (async () => {
+  divider("postTestCast run");
   try {
     const text =
-      "Test cast via delegated signer — linking GitHub × Farcaster safely. #autopost";
-
+      "Test cast via delegated signer — linking GitHub ⚙️ Farcaster safely. #autopost";
     const imageUrl = process.env.POST_IMAGE_URL_1 || null;
 
-    console.log("[test] Using signer UUID:", process.env.SIGNER_UUID ? "present ✅" : "MISSING ❌");
-    console.log("[test] Image URL:", imageUrl || "(none)");
+    console.log("🧠 Using signer:", config.signerUuid ? "✅ present" : "❌ missing");
+    console.log("🖼️ Image URL:", imageUrl || "(none)");
 
-    const out = await postCast({ text, imageUrl });
-    console.log("[test] Published cast:", out);
+    const result = await postCast({ text, imageUrl });
+    console.log("✅ Published mock cast:", result);
+    appendLog(`✅ postTestCast → "${text}"`);
+
   } catch (e) {
-    console.error("[test] Error:", e);
-    process.exit(1);
+    console.error("❌ Error:", e.message);
+    appendLog(`❌ postTestCast error: ${e.message}`);
   }
 })();
